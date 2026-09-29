@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booklingo — Learn & Discover Books</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<aside class="sidebar">
+  <div class="logo">Book<span>lingo</span> 📚</div>
+
+  <nav class="nav">
+    <button class="active" onclick="showSection('learn',this)">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-text">Learn</span>
+    </button>
+
+    <button onclick="showSection('books',this)">
+      <span class="nav-icon">📚</span>
+      <span class="nav-text">Books</span>
+    </button>
+
+    <button onclick="showSection('practice',this)">
+      <span class="nav-icon">🎯</span>
+      <span class="nav-text">Practice</span>
+    </button>
+
+    <button onclick="showSection('profile',this)">
+      <span class="nav-icon">👤</span>
+      <span class="nav-text">Profile</span>
+    </button>
+  </nav>
+</aside>
+
+<main class="main">
+
+  <header class="topbar">
+    <div class="language">
+      <span class="flag">🇬🇧</span>
+      <span>English</span>
+    </div>
+
+    <div class="stats">
+      <div class="stat">🔥 <span id="streak">7</span></div>
+      <div class="stat">💎 <span id="gems">350</span></div>
+      <div class="stat">⚡ <span id="xp">1,240</span> XP</div>
+    </div>
+  </header>
+
+  <div class="page">
+
+    <!-- LEARN -->
+    <section id="learn" class="section active">
+
+      <div class="hero">
+        <div>
+          <h1>Ready to learn? 🚀</h1>
+          <p>Complete today's lesson and keep your streak alive!</p>
+        </div>
+
+        <div class="hero-character" id="heroChar">🦊</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <h2>Today's progress</h2>
+          <strong id="dayPct">65%</strong>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="dayFill"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <h2>Learning Path</h2>
+          <span>Unit 3</span>
+        </div>
+
+        <div class="path">
+          <button class="lesson green" onclick="startLesson(1)" title="Word Meaning">⭐</button>
+          <button class="lesson blue" onclick="startLesson(2)" title="Listening">🧠</button>
+          <button class="lesson purple" onclick="startLesson(3)" title="Spelling">💬</button>
+          <button class="lesson orange" onclick="startLesson(4)" title="Word Match">🏆</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- BOOKS -->
+    <section id="books" class="section">
+
+      <div class="book-header">
+        <h1>📚 Discover a Book</h1>
+        <p>Type a book name and get information instantly.</p>
+
+        <div class="search-box">
+          <input
+            id="bookSearch"
+            type="text"
+            placeholder="Try: Harry Potter, The Hobbit..."
+            onkeydown="if(event.key==='Enter')searchBooks()"
+          />
+
+          <button onclick="searchBooks()">🔍 Search</button>
+        </div>
+      </div>
+
+      <div id="bookResults" class="book-results">
+        <div class="loading">
+          🔎 Search for a book to get started.
+        </div>
+      </div>
+
+    </section>
+
+    <!-- PRACTICE -->
+    <section id="practice" class="section">
+
+      <div class="hero">
+        <div>
+          <h1>Practice makes progress! 🎯</h1>
+          <p>Review words you've learned recently.</p>
+        </div>
+
+        <div class="hero-character">🧠</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <h2>Daily Goals</h2>
+        </div>
+
+        <div class="goal-grid">
+
+          <div class="goal">
+            <div class="goal-icon">⭐</div>
+            <strong id="gXp">0</strong>
+            <span>XP earned today</span>
+          </div>
+
+          <div class="goal">
+            <div class="goal-icon">📖</div>
+            <strong id="gWords">0</strong>
+            <span>Words reviewed</span>
+          </div>
+
+          <div class="goal">
+            <div class="goal-icon">🎧</div>
+            <strong id="gListen">0</strong>
+            <span>Listening exercises</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <h2>Choose a Practice Mode</h2>
+        </div>
+
+        <div class="modes">
+
+          <button class="mode" onclick="startPractice('choice')">
+            <div class="goal-icon">🧠</div>
+            <strong>Word Meaning</strong>
+            <small>Pick the right definition</small>
+          </button>
+
+          <button class="mode" onclick="startPractice('listen')">
+            <div class="goal-icon">🎧</div>
+            <strong>Listening</strong>
+            <small>Hear a word, choose it</small>
+          </button>
+
+          <button class="mode" onclick="startPractice('type')">
+            <div class="goal-icon">⌨️</div>
+            <strong>Spelling</strong>
+            <small>Type the word from its clue</small>
+          </button>
+
+          <button class="mode" onclick="startPractice('match')">
+            <div class="goal-icon">🧩</div>
+            <strong>Word Match</strong>
+            <small>Pair words with meanings</small>
+          </button>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- PROFILE -->
+    <section id="profile" class="section">
+
+      <div class="card profile">
+
+        <div class="avatar" id="avatar">🦊</div>
+
+        <div class="avatars">
+          <button onclick="setAvatar('🦊')">🦊</button>
+          <button onclick="setAvatar('🐼')">🐼</button>
+          <button onclick="setAvatar('🦁')">🦁</button>
+          <button onclick="setAvatar('🐱')">🐱</button>
+          <button onclick="setAvatar('🐧')">🐧</button>
+          <button onclick="setAvatar('🦄')">🦄</button>
+          <button onclick="setAvatar('🐸')">🐸</button>
+          <button onclick="setAvatar('📚')">📚</button>
+        </div>
+
+        <h1>Language Explorer</h1>
+
+        <p style="color:#718096;margin-top:7px">
+          Learning English
+        </p>
+
+        <p class="timeline">
+          ⏱ <b id="pTime">0m</b> spent learning
+        </p>
+
+        <p class="rates">
+          Earn 2 XP every minute and 1 💎 every 5 minutes.
+          Use the app 5+ minutes a day to grow your 🔥 streak.
+        </p>
+
+        <div class="achievements">
+
+          <div class="achievement">
+            <div>🔥</div>
+            <strong id="pStreak">0</strong>
+            <br>
+            <small>Day streak</small>
+          </div>
+
+          <div class="achievement">
+            <div>⭐</div>
+            <strong id="pXp">1,240</strong>
+            <br>
+            <small>Total XP</small>
+          </div>
+
+          <div class="achievement">
+            <div>📚</div>
+            <strong id="pLessons">42</strong>
+            <br>
+            <small>Lessons</small>
+          </div>
+
+          <div class="achievement">
+            <div>💎</div>
+            <strong id="pGems">0</strong>
+            <br>
+            <small>Diamonds</small>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+</main>
+
+<!-- AUDIO PLAYER -->
+<div id="player" class="player">
+
+  <span style="font-size:26px">🎧</span>
+
+  <div class="pinfo">
+    <strong id="pTitle"></strong>
+    <small id="pStatus"></small>
+  </div>
+
+  <select id="pRate" title="Speed">
+    <option value="0.8">0.8x</option>
+    <option value="1" selected>1x</option>
+    <option value="1.25">1.25x</option>
+    <option value="1.5">1.5x</option>
+  </select>
+
+  <button id="pPause" onclick="togglePause()">⏸</button>
+  <button class="stop" onclick="stopBook()">⏹</button>
+
+</div>
+
+<!-- PRACTICE MODAL -->
+<div id="pModal" class="modal">
+
+  <div class="modal-box">
+
+    <div id="pBody"></div>
+
+    <button class="close" onclick="closePractice()">
+      Quit
+    </button>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
