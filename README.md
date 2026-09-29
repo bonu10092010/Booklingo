@@ -1,0 +1,1 @@
+So totally our app is about books. When you enter to our app you can search some books and also you can listen to the audio in different language. And you can also pracrtise english. And you can have interesting profile. Like when you use our app and you will earn xp,diamonds and streak too. 
